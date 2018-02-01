@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"time"
 	"github.com/gorilla/mux"
 	"net/http"
 	"encoding/json"
@@ -48,6 +49,10 @@ func getValue(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	source := rand.NewSource(time.Now().UnixNano())
+	generator := rand.New(source)
+	stringPosition = generator.Intn(decadeMax)
+
 	router := mux.NewRouter()
 	router.HandleFunc("/roulette", getValue).Methods("GET")
 	log.Fatal(http.ListenAndServe(":8000", router))
