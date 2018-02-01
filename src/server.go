@@ -45,7 +45,20 @@ func randomizeInt(generator *rand.Rand, max int) *ApiInt {
 }
 
 func getValue(w http.ResponseWriter, r *http.Request) {
+	source := rand.NewSource(time.Now().UnixNano())
+	generator := rand.New(source)
 
+	if decadeCounter == stringPosition {
+		json.NewEncoder(w).Encode(randomizeString(generator, 14))
+	} else {
+		json.NewEncoder(w).Encode(randomizeInt(generator, 100))
+	}
+	
+	if decadeCounter == 9 {
+		decadeCounter = 0
+	} else {
+		decadeCounter++
+	}
 }
 
 func main() {
