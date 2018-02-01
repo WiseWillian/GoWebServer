@@ -44,6 +44,15 @@ func randomizeInt(generator *rand.Rand, max int) *ApiInt {
 	return retorno
 }
 
+func checkDecade(generator *rand.Rand) {
+	if decadeCounter == decadeMax {
+		decadeCounter = 0
+		stringPosition = generator.Intn(decadeMax)
+	} else {
+		decadeCounter++
+	}
+}
+
 func getValue(w http.ResponseWriter, r *http.Request) {
 	source := rand.NewSource(time.Now().UnixNano())
 	generator := rand.New(source)
@@ -53,12 +62,8 @@ func getValue(w http.ResponseWriter, r *http.Request) {
 	} else {
 		json.NewEncoder(w).Encode(randomizeInt(generator, 100))
 	}
-	
-	if decadeCounter == 9 {
-		decadeCounter = 0
-	} else {
-		decadeCounter++
-	}
+
+	checkDecade(generator)
 }
 
 func main() {
@@ -67,6 +72,6 @@ func main() {
 	stringPosition = generator.Intn(decadeMax)
 
 	router := mux.NewRouter()
-	router.HandleFunc("/roulette", getValue).Methods("GET")
+	router.HandleFunc("/value", getValue).Methods("GET")
 	log.Fatal(http.ListenAndServe(":8000", router))
 }
