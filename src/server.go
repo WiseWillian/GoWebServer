@@ -8,6 +8,13 @@ import (
 	"math/rand"
 )
 
+const stringSize = 16 //Constante que guarda o tamanho padrão da string
+const decadeMax = 9 //Constante que indica até onde o contador de década vai
+const letters = "abcdefghijklmnopqrstuvwxyz" //Letras para geracao da string randomica
+
+var decadeCounter int //Conta quantas vezes o endpoint foi chamado de 10 em 10
+var stringPosition int //Guarda a posicao que a string deve ser mostrada na decada
+
 type ApiString struct {
 	Data string `json:"result"`
 }
