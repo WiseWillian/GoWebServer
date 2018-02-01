@@ -66,12 +66,18 @@ func getValue(w http.ResponseWriter, r *http.Request) {
 	checkDecade(generator)
 }
 
+func resetServer() {
+	decadeCounter = 0
+	stringPosition = 0
+}
+
 func main() {
 	source := rand.NewSource(time.Now().UnixNano())
 	generator := rand.New(source)
 	stringPosition = generator.Intn(decadeMax)
 
 	router := mux.NewRouter()
+	router.HandleFunc("/reset", getValue).Methods("GET")
 	router.HandleFunc("/value", getValue).Methods("GET")
 	log.Fatal(http.ListenAndServe(":8000", router))
 }
