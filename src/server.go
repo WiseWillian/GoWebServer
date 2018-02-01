@@ -25,7 +25,15 @@ type ApiInt struct {
 
 //Função que retorna uma string randomica
 func randomizeString(generator *rand.Rand, size int) *ApiString {
+	var retorno = new (ApiString)
+	str := make([]byte, size)
 
+	for i := range str {
+		str[i] = letters[generator.Intn(len(letters))]
+	}
+
+	retorno.Data = string(str)
+	return retorno
 }
 
 //Função que retorna um numero inteiro randomico
