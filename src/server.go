@@ -7,5 +7,6 @@ import (
 )
 
 func main() {
-
+	router := mux.NewRouter()
+	log.Fatal(http.ListenAndServe(":8000", router))
 }
