@@ -8,8 +8,17 @@ import (
 	"math/rand"
 )
 
+type ApiString struct {
+	Data string `json:"result"`
+}
+
 type ApiInt struct {
 	Data int `json:"result"`
+}
+
+//Função que retorna uma string randomica
+func randomizeString(generator *rand.Rand, size int) *ApiString {
+
 }
 
 //Função que retorna um numero inteiro randomico
