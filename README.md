@@ -24,6 +24,17 @@ Clone o repositório no local desejado
 git clone https://github.com/WiseWillian/GoWebServer/
 ```
 
+No terminal, execute: 
+
+```
+export GOPATH=$HOME/Local de clonagem/GoWebServer
+```
+
+```
+export GOBIN=$HOME/Local de clonagem/GoWebServer/bin
+```
+
+
 ## Executando o Webserver
 
 Para executar o código naveque até o diretório onde está contido
