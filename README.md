@@ -1,4 +1,4 @@
-# BeerApiTesting
+# GoWebServer
 
 Este repositório contém código e informações sobre a criação de um Webserver simples na linguagem Go que retorna em 90% das vezes que for chamado, um número inteiro randômico, e 10% uma string também randômica
 
